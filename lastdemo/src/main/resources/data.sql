@@ -1,0 +1,1 @@
+insert into usertable values('tenman2','1234')
