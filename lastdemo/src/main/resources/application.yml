@@ -2,7 +2,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
   h2:
     console:
       enabled: true
