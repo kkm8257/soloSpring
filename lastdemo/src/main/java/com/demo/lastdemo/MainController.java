@@ -47,6 +47,16 @@ public class MainController {
         return "join/join";
     }
 
+    @PostMapping("login")
+    public String login(){
+
+
+
+        return "";
+    }
+
+
+
     @PostMapping("/join")
     public String join(HttpServletRequest request){
 
