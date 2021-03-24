@@ -1,14 +1,14 @@
 package com.demo.lastdemo.dao;
 
 
-import com.demo.lastdemo.vo.ClientVO;
+import com.demo.lastdemo.vo.UserTable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClientRepository extends CrudRepository<ClientVO,String> {
+public interface ClientRepository extends CrudRepository<UserTable,String> {
     //id 는 pk의 형식
 
-    ClientVO findByUsername(String username);
+
 
 }
