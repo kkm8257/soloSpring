@@ -1,1 +1,0 @@
-CREATE TABLE USERTABLE (  username varchar(40) primary key,  userpwd varchar(255) not null)

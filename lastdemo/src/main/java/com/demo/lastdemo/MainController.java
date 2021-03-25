@@ -34,6 +34,8 @@ public class MainController {
 
         return "login/login";
     }
+
+
     @GetMapping("/goBoard")
     public String goBoard(){
         System.out.println(">>"+"Board");
@@ -47,12 +49,19 @@ public class MainController {
         return "join/join";
     }
 
-    @PostMapping("login")
+    @PostMapping("/logout")
+    public String logout(){
+
+    System.out.println("로그아웃");
+        return "home/home";
+    }
+
+    @PostMapping("/login")
     public String login(){
 
+        System.out.println("login controller in");
 
-
-        return "";
+        return "home/home";
     }
 
 

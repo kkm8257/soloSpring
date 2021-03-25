@@ -1,5 +1,7 @@
 package com.demo.lastdemo.vo;
 
+import sun.jvm.hotspot.debugger.win32.coff.AuxSectionDefinitionsRecord;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,6 +13,8 @@ public class UserTable {
     private String userpwd;
 
     public UserTable() {
+
+
 
     }
 

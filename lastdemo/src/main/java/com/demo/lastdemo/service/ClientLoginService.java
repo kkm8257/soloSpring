@@ -29,13 +29,12 @@ public class ClientLoginService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("login try..");
+
+
         List<GrantedAuthority> authorities=new ArrayList<>();
 
-
-
-
 //        Optional<UserTable> voName = clientRepository.findByUsername(username);
-            UserTable vo = clientRepository.getOne(username);
+            Optional<UserTable> vo = clientRepository.findByUsername(username);
 
         if(vo!=null){
             System.out.println("유저있음");
@@ -48,11 +47,11 @@ public class ClientLoginService implements UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
             }
 
-            return new User(vo.getUsername(),vo.getUserpwd(),authorities);
+            return new User(vo.get().getUsername(),vo.get().getUserpwd(),authorities);
 
         }else{
             System.out.println("유저없음");
-            return new User(vo.getUsername(),vo.getUserpwd(),authorities);
+            throw new UsernameNotFoundException("User not authorized.");
         }
 //        authorities.add(new SimpleGrantedAuthority("ROLE_USER")); //앞에 ROLE_을 붙여야 home.html에서 정상적으로 hasRole()구문을 인식
 

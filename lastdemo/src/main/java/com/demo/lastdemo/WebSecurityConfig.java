@@ -14,7 +14,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-
         http
                 .authorizeRequests()
                 .antMatchers("/","/goHome","/goLogin","/goJoin","/join","/h2_db/**").permitAll()
@@ -28,11 +27,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .and()
                 .formLogin()
-                .loginPage("/goLogin")
+                .loginPage("/goLogin").loginProcessingUrl("/login").defaultSuccessUrl("/")
                 .permitAll()
                 .and()
                 .logout()
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/goHome")
+                .invalidateHttpSession(true)
                 .permitAll();
 
 
@@ -52,31 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //formLogin을 처리하는 쪽으로 보내서 거기서 Login("/login")으로 보낸다.
         //이 요청 곧 MvcConfig에서 뷰리졸버를 통해 login.html로 보낸다.
 
-
     }
 
-
-    //아래는 예시고 보통은  UserDetailService 자체를 bean으로 등록해서 사용한다.
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("USER")
-//                        .build();
-//
-//
-//        //name이랑 passoword는 당연히있어야하고
-//        //roles이라는 개념이있다 . admin이 user의 상위 개념
-//
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
-
-
-    //아래는 password 인코더 설정
 
     @Bean
     public PasswordEncoder passwordEncoder(){

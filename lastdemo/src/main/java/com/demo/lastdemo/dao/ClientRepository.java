@@ -13,7 +13,6 @@ public interface ClientRepository extends JpaRepository<UserTable,String> {
     //id 는 pk의 형식
 
     Optional<UserTable> findByUsername(String username);
-    UserTable getOne(String username);
-//    Optional<UserTable> findByUsernameAnduAndUserpwd(String username, String userpwd);
+
 
 }
