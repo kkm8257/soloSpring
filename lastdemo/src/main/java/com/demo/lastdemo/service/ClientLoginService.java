@@ -2,7 +2,7 @@ package com.demo.lastdemo.service;
 
 
 import com.demo.lastdemo.dao.ClientRepository;
-import com.demo.lastdemo.vo.UserTable;
+import com.demo.lastdemo.vo.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,19 +27,17 @@ public class ClientLoginService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         System.out.println("login try..");
-
-
         List<GrantedAuthority> authorities=new ArrayList<>();
 
 //        Optional<UserTable> voName = clientRepository.findByUsername(username);
-            Optional<UserTable> vo = clientRepository.findByUsername(username);
+            Optional<Client> vo = clientRepository.findByClientEmail(email);
 
         if(vo!=null){
-            System.out.println("유저있음");
+
             //이름으로 유저 가져오긴했는데 비밀번호는 어떻게 가져다가 비교할지 고민
-            if (username.equals("admin")) {
+            if (email.equals("admin")) {
                 System.out.println("admin chk");
                 authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
             }else {
@@ -47,7 +45,8 @@ public class ClientLoginService implements UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
             }
 
-            return new User(vo.get().getUsername(),vo.get().getUserpwd(),authorities);
+            System.out.println(">>"+vo);
+            return new User(vo.get().getClientEmail(),vo.get().getClientPwd(),authorities);
 
         }else{
             System.out.println("유저없음");

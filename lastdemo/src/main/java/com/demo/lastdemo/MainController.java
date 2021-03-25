@@ -3,7 +3,7 @@ package com.demo.lastdemo;
 
 import com.demo.lastdemo.service.ClientJoinService;
 import com.demo.lastdemo.service.ClientLoginService;
-import com.demo.lastdemo.vo.UserTable;
+import com.demo.lastdemo.vo.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Controller
 public class MainController {
@@ -69,12 +70,13 @@ public class MainController {
     @PostMapping("/join")
     public String join(HttpServletRequest request){
 
-        System.out.println("id >> "+request.getParameter("id"));
-        System.out.println("pwd >> "+request.getParameter("pwd"));
 
-        UserTable result=clientJoinService.joinClient(new UserTable(request.getParameter("id"),request.getParameter("pwd")));
-        if(result!=null){
-            System.out.println("result : "+result);
+
+        Client vo=clientJoinService.joinClient(new Client(request.getParameter("email"),request.getParameter("pwd"),request.getParameter("nick"),new Date(),new Date()));
+
+
+        if(vo!=null){
+            System.out.println("result : "+vo);
         }else{
             System.out.println("result : NULL !");
 

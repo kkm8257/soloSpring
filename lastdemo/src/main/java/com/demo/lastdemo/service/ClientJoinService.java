@@ -1,7 +1,7 @@
 package com.demo.lastdemo.service;
 
 import com.demo.lastdemo.dao.ClientRepository;
-import com.demo.lastdemo.vo.UserTable;
+import com.demo.lastdemo.vo.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,9 +15,9 @@ public class ClientJoinService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public UserTable joinClient(UserTable clientVO) {
+    public Client joinClient(Client clientVO) {
 
-        clientVO.setUserpwd(passwordEncoder.encode(clientVO.getUserpwd()));  //평문 암호화
+        clientVO.setClientPwd(passwordEncoder.encode(clientVO.getClientPwd()));  //평문 암호화
 
        return clientRepository.save(clientVO);
     }
