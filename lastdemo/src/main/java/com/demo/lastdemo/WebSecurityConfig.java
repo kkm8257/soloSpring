@@ -16,7 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/","/goHome","/goLogin","/goJoin","/join","/h2_db/**").permitAll()
+                .antMatchers("/**","/goHome","/goLogin","/goJoin","/join","/h2_db/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf()

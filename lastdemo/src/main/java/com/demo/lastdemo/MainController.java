@@ -50,20 +50,27 @@ public class MainController {
         return "join/join";
     }
 
-    @PostMapping("/logout")
-    public String logout(){
+    @GetMapping("/goTest")
+    public String goTest(){
+        System.out.println(">>"+"test");
 
-    System.out.println("로그아웃");
-        return "home/home";
+        return "home/blank-dark";
     }
 
-    @PostMapping("/login")
-    public String login(){
-
-        System.out.println("login controller in");
-
-        return "home/home";
-    }
+//    @PostMapping("/logout")
+//    public String logout(){
+//
+//    System.out.println("로그아웃");
+//        return "home/home";
+//    }
+//
+//    @PostMapping("/login")
+//    public String login(){
+//
+//        System.out.println("login controller in");
+//
+//        return "home/home";
+//    }
 
 
 
