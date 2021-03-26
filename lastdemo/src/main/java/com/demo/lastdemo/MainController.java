@@ -54,7 +54,7 @@ public class MainController {
     public String goTest(){
         System.out.println(">>"+"test");
 
-        return "home/blank-dark";
+        return "home/blank";
     }
 
 //    @PostMapping("/logout")
